@@ -4,6 +4,7 @@
 ```bash
 wget https://github.com/valdisxp1/my-reinstall/tarball/master -O my-reinstall.tar.gz &&
 tar -zxvf my-reinstall.tar.gz &&
-mv valdisxp1-my-reinstall-??????? my-reinstall &&
-rm my-reinstall.tar.gz
+mv valdisxp1-my-reinstall-??????? my-reinstall-master &&
+rm my-reinstall.tar.gz &&
+cd my-reinstall-master
 ```
