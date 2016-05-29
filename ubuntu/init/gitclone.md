@@ -5,7 +5,7 @@
 sudo apt-get update &&
 sudo apt-get install -y git &&
 git clone https://github.com/valdisxp1/my-reinstall.git &&
-cd my-reinstall
+cd my-reinstall/ubuntu
 ```
 
 

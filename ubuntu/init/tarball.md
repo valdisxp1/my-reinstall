@@ -6,5 +6,5 @@ wget https://github.com/valdisxp1/my-reinstall/tarball/master -O my-reinstall.ta
 tar -zxvf my-reinstall.tar.gz &&
 mv valdisxp1-my-reinstall-??????? my-reinstall-master &&
 rm my-reinstall.tar.gz &&
-cd my-reinstall-master
+cd my-reinstall-master/ubuntu
 ```

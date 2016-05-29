@@ -6,5 +6,5 @@ wget https://github.com/valdisxp1/my-reinstall/zipball/master -O my-reinstall.zi
 unzip my-reinstall.zip &&
 mv valdisxp1-my-reinstall-??????? my-reinstall-master &&
 rm my-reinstall.zip &&
-cd my-reinstall-master
+cd my-reinstall-master/ubuntu
 ```
