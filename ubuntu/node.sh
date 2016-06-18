@@ -6,8 +6,11 @@ sudo apt-get install -y nodejs npm
 # From http://gruntjs.com/getting-started
 sudo npm install -g grunt-cli &&
 sudo ln -s /usr/bin/nodejs /usr/bin/node
+# From https://bower.io/#install-bower
+sudo npm install -g bower
 
 # @test
 nodejs --version
 npm --version
 grunt --version
+bower --version
