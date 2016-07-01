@@ -5,7 +5,7 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89
 sudo apt-get update &&
 sudo apt-get install -y sbt &&
 wget http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.deb -O /tmp/scala-2.11.8.deb &&
-sudo dpkg -i /tmp/scala-2.11.8.deb &&
+sudo apt-get install -y /tmp/scala-2.11.8.deb &&
 git clone https://github.com/valdisxp1/sbt-scala.git ~/sbt-scala
 rm /tmp/scala-2.11.8.deb
 # @preload
