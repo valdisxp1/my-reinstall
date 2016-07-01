@@ -1,5 +1,7 @@
 # Currently not automated
 * Install Google Chrome
+* Uninstall Candy Crush, Weather, Finance and other Win10 bloatware
+* Clear Start menu of pointeless livetiles
 * Disable fastboot
 * Disable standby on close lid
 * Disable sticky keys and crap
