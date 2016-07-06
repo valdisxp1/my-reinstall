@@ -6,7 +6,6 @@ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58
 sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > /etc/apt/sources.list.d/docker.list' &&
 sudo apt-get update &&
 sudo apt-get install -y docker-engine &&
-sudo groupadd docker &&
 sudo usermod -aG docker valdis &&
 sudo service docker start
 # @test
