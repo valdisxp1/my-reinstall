@@ -4,6 +4,7 @@
 * Clear Start menu of pointeless livetiles
 * Disable fastboot
 * Disable standby on close lid
+* Do not ask for password on wakeup, if needed (Old Control panel  -> Requires a password on wakeup -> Password protection on wakeup)
 * Disable sticky keys and crap
 * Install Steam
 * Install Battle net
@@ -15,4 +16,4 @@
 * Install Putty
 * Install Turtoise git
 * Install NVidia Experience (if has nvidia card)
-* Setup Taskbar
+* Setup Taskbar (pin programs)
