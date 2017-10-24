@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-8-jdk openjdk-8-source
 
 # @test
 java -version
