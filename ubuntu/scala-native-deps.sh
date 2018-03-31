@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt update && sudo apt install -y clang libunwind-dev libgc-dev libre2-dev lldb &&
+sudo apt update && sudo apt install -y clang  clang-format libunwind-dev libgc-dev libre2-dev lldb &&
 echo $(cd &&
 mkdir scala-2.11.11-only &&
 cd scala-2.11.11-only &&
