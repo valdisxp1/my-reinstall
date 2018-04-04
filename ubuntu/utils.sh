@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt update && sudo apt install -y iftop powertop htop terminator nmap curl pwgen sox xclip trickle xsel
+sudo apt update && sudo apt install -y iftop powertop htop terminator nmap curl pwgen sox xclip trickle xsel shellcheck
 # @test
 htop --version
 iftop -h
@@ -11,3 +11,4 @@ pwgen --help
 play --version
 xclip -version
 trickle -V
+shellcheck -V
