@@ -1,6 +1,6 @@
 #!/bin/bash
-# TODO get latest direct link from this page https://www.jetbrains.com/idea/download/download-thanks.html?platform=linux&code=IIC
-wget https://download.jetbrains.com/idea/ideaIC-2018.1.4.tar.gz -O /tmp/ideaIC.tar.gz  &&
+URL="$(curl 'https://data.services.jetbrains.com/products/releases?code=IIU%2CIIC&latest=true&type=release&build=' | jq -r '.IIC[0].downloads.linux.link')"
+wget "$URL" -O /tmp/ideaIC.tar.gz  &&
 tar -zxvf /tmp/ideaIC.tar.gz -C ~
 rm /tmp/ideaIC*.tar.gz
 # TODO create the desktop item
