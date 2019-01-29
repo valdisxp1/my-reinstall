@@ -4,7 +4,7 @@ echo $(cd &&
 mkdir scala-2.11.11-only &&
 cd scala-2.11.11-only &&
 git init --bare &&
-git remote add origin git@github.com:scala/scala.git &&
+git remote add origin https://github.com/scala/scala.git &&
 git fetch --depth=1 origin v2.11.11 &&
 git tag v2.11.11 FETCH_HEAD &&
 git fetch --depth=1 origin v2.11.12 &&
