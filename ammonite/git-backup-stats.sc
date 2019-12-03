@@ -65,6 +65,13 @@ val homeDir = new File("/home/valdis/")
 val excludes = Set(
   new File(homeDir, ".cache"),
   new File(homeDir, ".sbt"),
+  new File(homeDir, ".npm"),
+  new File(homeDir, ".java"),
+  new File(homeDir, ".gradle"),
+  new File(homeDir, ".android"),
+  new File(homeDir, ".coursier"),
+  new File(homeDir, ".rustup"),
+  new File(homeDir, ".multirust"),
   new File(homeDir, ".ssh"),
   new File(homeDir, ".steam"),
   new File(homeDir, ".m2"),
@@ -76,12 +83,15 @@ val excludes = Set(
   new File(homeDir, ".config"),
   new File(homeDir, ".mozilla"),
   new File(homeDir, ".thunderbird"),
+  new File(homeDir, "albiononline"),
+  new File(homeDir, "snap"),
   new File(homeDir, "Downloads")
 )
 
 val excludedPrefixes = Seq(
   ".IdeaIC",
-  "idea-IC-"
+  "idea-IC-",
+  ".gimp-"
 )
 
 def excluded(dir: File) =
