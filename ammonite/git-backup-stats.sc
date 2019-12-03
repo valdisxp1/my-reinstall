@@ -62,7 +62,8 @@ val excludes = Set(
   new File(homeDir, ".ssh"),
   new File(homeDir, ".steam"),
   new File(homeDir, ".m2"),
-  new File(homeDir, ".ivy2")
+  new File(homeDir, ".ivy2"),
+  new File(homeDir, "Downloads")
 )
 
 def check(dir: File): Seq[CheckedRepo.ResultItem] = {
