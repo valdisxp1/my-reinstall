@@ -12,9 +12,7 @@ class CheckedRepo(dir: File, bare: Boolean = false) {
     if (bare) {
       builder.setBare()
     }
-    builder.setMustExist(true)
-      .readEnvironment
-      .findGitDir
+    builder.setMustExist(true).readEnvironment.findGitDir
     builder.build()
   }
 
@@ -74,6 +72,8 @@ val excludes = Set(
   new File(homeDir, ".ammonite"),
   new File(homeDir, ".idea-build"),
   new File(homeDir, ".gnome"),
+  new File(homeDir, ".local"),
+  new File(homeDir, ".config"),
   new File(homeDir, ".mozilla"),
   new File(homeDir, ".thunderbird"),
   new File(homeDir, "Downloads")
@@ -85,7 +85,8 @@ val excludedPrefixes = Seq(
 
 def excluded(dir: File) =
   excludes(dir) || (
-    dir.getParentFile == homeDir && excludedPrefixes.exists(dir.getName.startsWith)
+    dir.getParentFile == homeDir && excludedPrefixes.exists(
+      dir.getName.startsWith)
   )
 
 def check(dir: File): Seq[CheckedRepo.ResultItem] = {
