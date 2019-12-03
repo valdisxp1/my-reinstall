@@ -127,15 +127,30 @@ def bytesToHumanReadable(bytes: Long) = {
   }
 }
 
+@scala.annotation.tailrec
+def toHomeSubdir(file: File): File = {
+  val parent = file.getParentFile
+  if(parent == homeDir) {
+    file
+  } else {
+    toHomeSubdir(parent)
+  }
+}
+
 val toBackup = check(homeDir)
 if (toBackup.isEmpty) {
   println("all backed up")
 } else {
   println(toBackup.mkString("\n"))
+  println("subdirs:")
+  val subDirs = toBackup.map {
+    case CheckedRepo.MissedFile(file) => toHomeSubdir(file)
+    case CheckedRepo.MissedBranch(dir,_,_) => toHomeSubdir(dir)
+  }.distinct
+  println(subDirs.mkString("\n"))
   val totalSizeLowerBound = toBackup.collect {
     case CheckedRepo.MissedFile(file) => file.length()
   }.sum
   val humanReadable = bytesToHumanReadable(totalSizeLowerBound);
-  println(
-    s" total numbers of items to backup ${toBackup.size} size >= $humanReadable")
+  println(s" total numbers of items to backup ${toBackup.size} size >= $humanReadable")
 }
