@@ -80,7 +80,8 @@ val excludes = Set(
 )
 
 val excludedPrefixes = Seq(
-  ".IdeaIC"
+  ".IdeaIC",
+  "idea-IC-"
 )
 
 def excluded(dir: File) =
