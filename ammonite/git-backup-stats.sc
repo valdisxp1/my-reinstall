@@ -4,31 +4,39 @@ import java.io.File
 import collection.JavaConverters._
 import scala.util.Try
 
-class CheckedRepo(dir: File) {
+class CheckedRepo(dir: File, bare: Boolean = false) {
   import CheckedRepo._
-  val repo = new FileRepositoryBuilder()
-    .setGitDir(dir)
-    .setMustExist(true)
-    .readEnvironment
-    .findGitDir
-    .build()
+  val repo = {
+    val builder = new FileRepositoryBuilder()
+      .setGitDir(dir)
+    if (bare) {
+      builder.setBare()
+    }
+    builder.setMustExist(true)
+      .readEnvironment
+      .findGitDir
+    builder.build()
+  }
 
   import org.eclipse.jgit.api._
   val git = new Git(repo)
 
   def toBackup: Seq[ResultItem] = {
-    val status = git.status.call()
-
     // working dir status
-    val untracked = status.getUntracked.asScala
-      .map(path => MissedFile(new File(repo.getWorkTree, path)))
-      .toVector
+    val workingDirChanges = if (bare) {
+      Nil
+    } else {
+      val status = git.status.call()
+      val untracked = status.getUntracked.asScala
+        .map(path => MissedFile(new File(repo.getWorkTree, path)))
+        .toVector
 
-    val changed = status.getUncommittedChanges.asScala
-      .map(path => MissedFile(new File(repo.getWorkTree, path)))
-      .toVector
+      val changed = status.getUncommittedChanges.asScala
+        .map(path => MissedFile(new File(repo.getWorkTree, path)))
+        .toVector
 
-    val workingDirChanges = untracked ++ changed
+      untracked ++ changed
+    }
 
     //branch status
     val (remoteBranches, localBranches) = repo.getAllRefs.asScala.values
@@ -63,14 +71,28 @@ val excludes = Set(
   new File(homeDir, ".steam"),
   new File(homeDir, ".m2"),
   new File(homeDir, ".ivy2"),
+  new File(homeDir, ".ammonite"),
+  new File(homeDir, ".idea-build"),
+  new File(homeDir, ".gnome"),
+  new File(homeDir, ".mozilla"),
+  new File(homeDir, ".thunderbird"),
   new File(homeDir, "Downloads")
 )
 
+val excludedPrefixes = Seq(
+  ".IdeaIC"
+)
+
+def excluded(dir: File) =
+  excludes(dir) || (
+    dir.getParentFile == homeDir && excludedPrefixes.exists(dir.getName.startsWith)
+  )
+
 def check(dir: File): Seq[CheckedRepo.ResultItem] = {
-  if (excludes(dir)) {
+  if (excluded(dir)) {
     Nil
   } else {
-    Try(new CheckedRepo(dir))
+    Try(new CheckedRepo(dir, bare = true))
       .orElse(Try(new CheckedRepo(new File(dir, ".git"))))
       .map(_.toBackup)
       .getOrElse {
